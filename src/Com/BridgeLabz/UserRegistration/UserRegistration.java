@@ -132,12 +132,23 @@ public class UserRegistration {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter password :  ");
         String passWord = sc.nextLine();
-        boolean check = Pattern.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*#?&]{1})[A-Za-z\\d@$!%*?&]{8,}$", passWord);
+        boolean check = Pattern.matches("[A-Z]{1}[a-z]{5,}[0-9]{1}[!@#$%^&*~]{1}", passWord);
         if (check)
             System.out.println("Valid");
         else
             System.out.println(
                     "Please Enter a Valid password, it should have minimum 8 characters with, 1 upper case, 1 Numeric and 1 Special Char ");
+    }
+
+    /*
+     * create method emailUniversal which satisfies for all eMails given to check
+     */
+    public void emailUniversal(String eMail) {
+        boolean check = Pattern.matches("[a-zA-Z0-9_.]*[-]*[+]*[0-9]*@[a-zA-Z0-9]+([.][a-zA-Z]+)+", eMail);
+        if (check)
+            System.out.println("Valid");
+        else
+            System.out.println("Please Enter a Valid Email with Only \"example.abc@bl.co.in\" latter");
     }
 
     public static void main(String[] args) {
@@ -157,5 +168,32 @@ public class UserRegistration {
         user.passWordRule2();
         user.passWordRule3();
         user.passWordRule4();
+
+        /*
+         * this is code for which satisfies for all emails given to check
+         */
+        user.emailUniversal("abc@yahoo.com");
+        user.emailUniversal("abc-100@yahoo.com");
+        user.emailUniversal("abc.100@yahoo.com");
+        user.emailUniversal("abc111@abc.com");
+        user.emailUniversal("abc-100@abc.net");
+        user.emailUniversal("abc.100@abc.com.au");
+        user.emailUniversal("abc@1.com");
+        user.emailUniversal("abc@gmail.com.com");
+        user.emailUniversal("abc+100@gmail.com.com");
+
+        /*
+         * this is code for which not satisfies for all emails given to check
+         */
+        user.emailUniversal("abc");
+        user.emailUniversal("abc@.com.my");
+        user.emailUniversal("abc123@gmail.a");
+        user.emailUniversal("abc123@.com");
+        user.emailUniversal("abc123@.com.com");
+        user.emailUniversal(".abc@abc.com");
+        user.emailUniversal("abc()*@gmail.com");
+        user.emailUniversal("abc@%*.com");
+        user.emailUniversal("abc..2002@gmail.com");
+
     }
 }
