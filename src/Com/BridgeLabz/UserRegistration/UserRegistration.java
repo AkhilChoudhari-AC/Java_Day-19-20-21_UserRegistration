@@ -124,6 +124,22 @@ public class UserRegistration {
                     "Please Enter a Valid password, it should have minimum 8 characters with, 1 upper case and 1 Numeric ");
     }
 
+    /*
+     * create method passwordRule4() which contains minimum 8 characters with 1
+     * upper case, 1 Numeric and Exactly one special character
+     */
+    public void passWordRule4() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter password :  ");
+        String passWord = sc.nextLine();
+        boolean check = Pattern.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*#?&]{1})[A-Za-z\\d@$!%*?&]{8,}$", passWord);
+        if (check)
+            System.out.println("Valid");
+        else
+            System.out.println(
+                    "Please Enter a Valid password, it should have minimum 8 characters with, 1 upper case, 1 Numeric and 1 Special Char ");
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         /*
@@ -140,5 +156,6 @@ public class UserRegistration {
         user.passWordRule1();
         user.passWordRule2();
         user.passWordRule3();
+        user.passWordRule4();
     }
 }
